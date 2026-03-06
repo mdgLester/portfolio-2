@@ -1,0 +1,99 @@
+.about {
+  padding: 80px 0;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.about-card {
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+}
+
+.about-image-card {
+  grid-column: span 1;
+}
+
+.about-small-image-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+  border: 3px solid rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 123, 255, 0.2);
+}
+
+.about-small-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.about-small-image:hover {
+  transform: scale(1.1);
+}
+
+.about-tagline {
+  color: #007bff;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.about-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about-institution {
+  font-weight: bold;
+  color: #007bff;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.about-detail {
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.about-year {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Dark theme adjustments */
+body.dark .about-detail {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark .about-year {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-small-image-container {
+    width: 120px;
+    height: 120px;
+  }
+}
