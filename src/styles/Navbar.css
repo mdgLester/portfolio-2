@@ -107,3 +107,17 @@
     font-size: 1.2rem;
   }
 }
+
+/* Navbar hide / show animation */
+
+.navbar {
+  transition: transform 0.35s ease;
+}
+
+.nav-hide {
+  transform: translateY(-100%);
+}
+
+.nav-show {
+  transform: translateY(0);
+}

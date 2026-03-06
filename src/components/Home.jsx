@@ -1,48 +1,65 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Home.css';
 
 const Home = () => {
+  // Array of profile images
+  const images = [
+    '/profile.jpg',
+    '/profile1.jpg',
+    '/profile2.jpg',
+    '/profile3.jpg',
+    '/profile4.jpg'
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleImageClick = () => {
+    // Cycle to the next image
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
   return (
     <section id="home" className="home">
       <motion.div 
-        className="home-content"
+        className="home-left"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.8 }}
       >
-        <h1 className="home-title">
-          Hi, I'm <span className="highlight">John Lester M. De Guzman</span>
-        </h1>
-        <h2 className="home-subtitle">STEM Graduate | Aspiring IT Professional</h2>
-        <p className="home-description">
-          A fresh graduate from Bulacan State University with a passion for technology 
-          and a strong foundation in STEM. Eager to apply my skills and contribute to 
-          innovative projects in an entry-level IT position.
+        <h1>Hi, I'm <span className="highlight">John Lester</span></h1>
+        <h2>STEM Graduate | College Graduate | Aspiring IT Professional | Musician</h2>
+        <p>
+          Passionate about technology and eager to contribute to innovative projects 
+          with a strong educational foundation.
         </p>
-        <motion.div 
-          className="home-buttons"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <a href="#projects" className="btn btn-primary glass-btn">View My Work</a>
-          <a href="#contact" className="btn btn-secondary glass-btn">Contact Me</a>
-        </motion.div>
+        <div className="home-buttons">
+          <a href="#about" className="glass-btn">Know Me More</a>
+          <a href="#projects" className="glass-btn">View Work</a>
+          <a href="#contact" className="glass-btn">Contact Me</a>
+        </div>
       </motion.div>
-      
+
       <motion.div 
-        className="home-image"
+        className="home-right"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.8 }}
       >
-        <div className="profile-container glass-circle">
-          <img 
-            src="/profile.jpg" 
-            alt="John Lester M. De Guzman" 
-            className="profile-image"
-          />
+        <div className="profile-container glass-card" onClick={handleImageClick}>
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentImageIndex}
+              src={images[currentImageIndex]}
+              alt="John Lester"
+              className="profile-image"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.2 }}
+              transition={{ duration: 0.3 }}
+              style={{ cursor: 'pointer' }}
+            />
+          </AnimatePresence>
         </div>
       </motion.div>
     </section>

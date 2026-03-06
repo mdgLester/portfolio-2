@@ -1,0 +1,293 @@
+/* ================== Global ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+}
+
+/* ================== Glassmorphism ================== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 15px 40px rgba(31,38,135,0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-btn {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-3px);
+}
+
+/* ================== Scroll Progress ================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,#007bff,#00ff87);
+  transform-origin: 0%;
+  z-index: 1001;
+}
+
+/* ================== App & Main ================== */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 40px;
+}
+
+/* ================== Navbar ================== */
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Make menu take remaining horizontal space */
+.nav-menu {
+  display: flex;
+  flex: 1; /* menu fills space between logo and right buttons */
+  justify-content: space-around; /* spreads items evenly across menu */
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  width: 100%; /* ensure list fills the menu */
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  flex: 1; /* each item gets equal width */
+  text-align: center; /* center the text inside each menu item */
+}
+
+.nav-list a {
+  display: block;
+  padding: 1rem 0;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-list a:hover {
+  color: #007bff;
+}
+
+/* ================== Home ================== */
+.home {
+  min-height: 100vh;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 120px;
+}
+
+.home-left h1 {
+  font-size: 4rem;
+  line-height: 1.2;
+}
+
+.home-left h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.home-left p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.home-right .profile-container {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@media(max-width: 768px) {
+  .home {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding-top: 100px;
+  }
+
+  .home-left h1 { font-size: 3rem; }
+  .home-left h2 { font-size: 1.5rem; }
+  .home-left p { font-size: 1.1rem; }
+  .home-right .profile-container { width: 250px; height: 250px; }
+}
+
+/* ================== About ================== */
+.about-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.about-card {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.about-small-image-container {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+}
+
+.about-small-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.about-detail {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ================== Projects ================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(380px,1fr));
+  gap: 2.5rem;
+}
+
+.project-card {
+  padding: 2.5rem;
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+}
+
+.project-card p {
+  font-size: 1.1rem;
+}
+
+.tech-tag {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* ================== Skills ================== */
+.skill-category {
+  padding: 2.5rem;
+}
+
+.skill-category h3 {
+  font-size: 1.4rem;
+}
+
+.skill-item {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* ================== Contact ================== */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.contact-info, .contact-form {
+  padding: 2.5rem;
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 0.85rem;
+  font-size: 1rem;
+}
+
+/* ================== Footer ================== */
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 2rem;
+}
