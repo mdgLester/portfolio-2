@@ -44,24 +44,6 @@ body {
   transition: all 0.3s ease;
 }
 
-.glass-btn {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 0.7rem 1.5rem;
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #fff;
-}
-
-.glass-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: translateY(-3px);
-}
-
 /* ================== Scroll Progress ================== */
 .scroll-progress {
   position: fixed;
