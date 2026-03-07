@@ -200,3 +200,28 @@
     transform: translateY(-2px);
   }
 }
+
+.success-message {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00ff87;
+  color: #00ff87;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
