@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
-import Home from './components/Home'; // Changed from Hero to Home
+import Home from './components/Home';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
@@ -10,18 +10,8 @@ import ScrollProgress from './components/ScrollProgress';
 import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
-
   // Smooth scroll for anchor links
-  useEffect(() => {
+  React.useEffect(() => {
     const handleAnchorClick = (e) => {
       const target = e.target.closest('a');
       if (!target) return;
@@ -44,11 +34,11 @@ function App() {
   }, []);
 
   return (
-    <div className={`app ${theme}`}>
+    <div className="app">
       <ScrollProgress />
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <Navbar />
       <main>
-        <Home /> {/* Changed from Hero to Home */}
+        <Home />
         <About />
         <Projects />
         <Skills />

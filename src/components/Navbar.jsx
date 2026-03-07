@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Navbar.css';
 
-const Navbar = ({ theme, toggleTheme }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -12,11 +14,37 @@ const Navbar = ({ theme, toggleTheme }) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      // Always show navbar at very top
+      if (currentScroll < 10) {
+        setShowNavbar(true);
+      } 
+      // Hide when scrolling down
+      else if (currentScroll > lastScrollY) {
+        setShowNavbar(false);
+      } 
+      // Show when scrolling up
+      else {
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScroll);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <nav className={`navbar ${theme}`}>
+    <nav className={`navbar ${showNavbar ? 'nav-show' : 'nav-hide'}`}>
       <div className="nav-container">
+
         <div className="nav-logo" onClick={() => scrollToSection('home')}>
-          <span className="logo-text">Portfolio</span>
+          <span className="logo-text">JLMDG</span>
         </div>
 
         <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
@@ -29,16 +57,12 @@ const Navbar = ({ theme, toggleTheme }) => {
           </ul>
         </div>
 
-        <div className="nav-right">
-          <button className="theme-toggle" onClick={toggleTheme}>
-            {theme === 'light' ? '🌙' : '☀️'}
-          </button>
-          <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
-          </button>
-        </div>
+        <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+
       </div>
     </nav>
   );
