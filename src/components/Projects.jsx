@@ -4,21 +4,40 @@ import '../styles/Projects.css';
 
 const Projects = () => {
   const projects = [
-    { title: "FloraNet", description: "Plant ID & care system", tech:["React","Node","MongoDB"], gradient:"linear-gradient(135deg,#667eea,#764ba2)" },
-    { title: "Celestial DB", description: "Database of stars and galaxies", tech:["SQL","Data Organization"], gradient:"linear-gradient(135deg,#00b4db,#0083b0)" }
+    { 
+      title: "FloraNet", 
+      description: "Smart Community Management System for Milflora Homes Subdivision Baliwag, Bulacan", 
+      tech: ["React js", "Laravel", "MySQL"], 
+      gradient: "linear-gradient(135deg,#667eea,#764ba2)",
+      category: "Capstone Project" // Added category for FloraNet
+    },
+    { 
+      title: "PMES Web", 
+      description: "Personal Management and Evaluation System website", 
+      tech: ["React js", "JavaScript", "CSS"], 
+      gradient: "linear-gradient(135deg,#00b4db,#0083b0)",
+      category: "Internship Project" // Added category for PMES Web
+    }
   ];
 
   return (
     <section id="projects" className="projects">
-      <RevealOnScroll direction="fade"><h2>Projects</h2></RevealOnScroll>
+      <RevealOnScroll direction="fade">
+        <h2>Projects</h2>
+      </RevealOnScroll>
+      
       <div className="projects-grid">
-        {projects.map((p,i) => (
-          <RevealOnScroll key={i} direction={i%2===0?'left':'right'}>
-            <div className="glass-card project-card" style={{background:p.gradient}}>
-              <span className="project-category">Academic</span>
+        {projects.map((p, i) => (
+          <RevealOnScroll key={i} direction={i % 2 === 0 ? 'left' : 'right'}>
+            <div className="glass-card project-card" style={{background: p.gradient}}>
+              <span className="project-category">{p.category}</span>
               <h3>{p.title}</h3>
               <p>{p.description}</p>
-              <div className="project-tech">{p.tech.map((t,j)=><span key={j} className="tech-tag">{t}</span>)}</div>
+              <div className="project-tech">
+                {p.tech.map((t, j) => (
+                  <span key={j} className="tech-tag">{t}</span>
+                ))}
+              </div>
             </div>
           </RevealOnScroll>
         ))}
