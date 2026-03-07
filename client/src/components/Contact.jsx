@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RevealOnScroll from './RevealOnScroll';
+import SkeletonLoader from './SkeletonLoader';
 import '../styles/Contact.css';
 
 const Contact = () => {
+  const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ submitting: false, success: false, error: null });
+
+  // Simulate loading (shows skeleton for 1 second)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -47,6 +58,40 @@ const Contact = () => {
       });
     }
   };
+
+  // Skeleton loader for contact section
+  if (loading) {
+    return (
+      <section id="contact" className="contact">
+        {/* Title skeleton for "Contact Me" */}
+        <SkeletonLoader.Title level="h2" />
+        
+        <div className="contact-container">
+          {/* Left card skeleton */}
+          <RevealOnScroll direction="left">
+            <div className="glass-card contact-info skeleton-contact-info">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="contact-item skeleton-contact-item">
+                  <span className="contact-label skeleton-label" />
+                  <span className="contact-value skeleton-value" />
+                </div>
+              ))}
+            </div>
+          </RevealOnScroll>
+          
+          {/* Right card skeleton */}
+          <RevealOnScroll direction="right">
+            <div className="glass-card contact-form skeleton-contact-form">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="skeleton-input" />
+              ))}
+              <div className="skeleton-button" />
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="contact">

@@ -1,0 +1,178 @@
+/* Base skeleton styles */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Dark theme adjustment */
+body.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+}
+
+/* Text skeleton */
+.skeleton-text {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+/* Title skeletons with different sizes */
+.skeleton-title {
+  position: relative;
+  margin: 0 auto 2rem auto;
+  overflow: hidden;
+  width: fit-content;
+  min-width: 200px;
+}
+
+.skeleton-title-h1 {
+  height: 4rem;
+  width: 300px;
+}
+
+.skeleton-title-h2 {
+  height: 3rem;
+  width: 250px;
+}
+
+.skeleton-title-h3 {
+  height: 2rem;
+  width: 180px;
+}
+
+.skeleton-title-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: title-shimmer 1.8s infinite;
+  transform: translateX(-100%);
+}
+
+@keyframes title-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Avatar skeleton */
+.skeleton-avatar {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+/* Button skeleton */
+.skeleton-button {
+  width: 120px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+/* Card skeleton */
+.skeleton-card {
+  height: 300px;
+  border-radius: 20px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Tag skeleton */
+.skeleton-tag {
+  width: 80px;
+  height: 30px;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+/* Grid skeleton */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skeleton-title-h1 {
+    height: 3rem;
+    width: 250px;
+  }
+  
+  .skeleton-title-h2 {
+    height: 2.5rem;
+    width: 200px;
+  }
+  
+  .skeleton-title-h3 {
+    height: 1.8rem;
+    width: 150px;
+  }
+  
+  .skeleton-avatar {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .skeleton-button {
+    width: 100px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-title-h1 {
+    height: 2.5rem;
+    width: 220px;
+  }
+  
+  .skeleton-title-h2 {
+    height: 2rem;
+    width: 180px;
+  }
+  
+  .skeleton-title-h3 {
+    height: 1.5rem;
+    width: 130px;
+  }
+  
+  .skeleton-avatar {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .skeleton-tag {
+    width: 60px;
+    height: 25px;
+  }
+}
