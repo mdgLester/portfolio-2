@@ -4,19 +4,29 @@
   box-sizing: border-box;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Hide scrollbar globally but keep scrolling functionality */
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+  width: 0;
+  background: transparent;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-/* Light theme - with glassmorphism */
-body.light {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  color: #333333;
-}
-
-/* Dark theme - with glassmorphism */
-body.dark {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: #ffffff;
 }
@@ -29,6 +39,8 @@ body.dark {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .glass-btn {
@@ -36,7 +48,7 @@ body.dark {
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: inherit !important;
+  color: #ffffff !important;
 }
 
 .glass-btn:hover {
@@ -49,6 +61,7 @@ body.dark {
   backdrop-filter: blur(5px) !important;
   -webkit-backdrop-filter: blur(5px) !important;
   border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
 }
 
 .glass-input {
@@ -56,7 +69,7 @@ body.dark {
   backdrop-filter: blur(5px) !important;
   -webkit-backdrop-filter: blur(5px) !important;
   border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: inherit !important;
+  color: #ffffff !important;
 }
 
 .glass-input:focus {
@@ -70,7 +83,7 @@ body.dark {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 3px;
   background: linear-gradient(90deg, #007bff, #00ff87);
   transform-origin: 0%;
@@ -86,6 +99,9 @@ html {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
 
 main {
@@ -94,27 +110,56 @@ main {
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-/* Common styles */
+/* Common styles - CLEAN SPACING */
 section {
-  padding: 80px 0;
+  padding: 60px 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  scroll-margin-top: 80px; /* Accounts for fixed navbar */
+}
+
+/* Individual section spacing */
+#home {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+#about, #projects, #skills, #contact {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* Contact section - slightly less bottom padding */
+#contact {
+  padding-bottom: 40px;
 }
 
 h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
 h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   text-align: center;
+  color: #ffffff;
 }
 
 h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
 }
 
 .btn {
@@ -149,6 +194,60 @@ h3 {
   color: white;
 }
 
+/* Footer Styles */
+.footer {
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem 5%;
+  text-align: center;
+  background: inherit;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #007bff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.social-link:hover {
+  color: #00ff87;
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(0, 123, 255, 0.2);
+  border-color: #00ff87;
+  box-shadow: 0 5px 15px rgba(0, 255, 135, 0.3);
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   h1 {
@@ -160,7 +259,55 @@ h3 {
   }
   
   section {
-    padding: 60px 0;
+    padding: 40px 15px;
+    scroll-margin-top: 70px;
+  }
+  
+  #home {
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+  
+  #about, #projects, #skills, #contact {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  #contact {
+    padding-bottom: 30px;
+  }
+  
+  .glass-card {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: calc(100% - 10px);
+  }
+  
+  main {
+    padding: 0 15px;
+  }
+  
+  .footer {
+    padding: 1.5rem 5%;
+    margin-top: 10px;
+  }
+  
+  .footer-social {
+    gap: 1.5rem;
+  }
+  
+  .social-link {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .social-link svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .footer-text {
+    font-size: 0.8rem;
   }
 }
 
@@ -177,8 +324,23 @@ h3 {
 /* Loading animation for images */
 .profile-image, .about-small-image {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100%;
 }
 
 .profile-image:hover, .about-small-image:hover {
   transform: scale(1.1) rotate(5deg);
+}
+
+/* Ensure all images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Keep overflow hidden only at the root level */
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }

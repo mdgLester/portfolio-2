@@ -5,16 +5,32 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  color: #333;
-  transition: background 0.3s, color 0.3s;
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
-body.dark {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+/* Hide scrollbar globally but keep scrolling functionality */
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+  width: 0;
+  background: transparent;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); /* Dark theme only */
   color: #fff;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* ================== Glassmorphism ================== */
@@ -24,24 +40,25 @@ body.dark {
   -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 15px 40px rgba(31,38,135,0.3);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.3);
   transition: all 0.3s ease;
 }
 
 .glass-btn {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 0.7rem 1.5rem;
   border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: #fff;
 }
 
 .glass-btn:hover {
-  background: rgba(255,255,255,0.35);
+  background: rgba(255, 255, 255, 0.35);
   transform: translateY(-3px);
 }
 
@@ -52,7 +69,7 @@ body.dark {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg,#007bff,#00ff87);
+  background: linear-gradient(90deg, #007bff, #00ff87);
   transform-origin: 0%;
   z-index: 1001;
 }
@@ -70,6 +87,37 @@ main {
   margin: 0 auto;
   width: 100%;
   padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* ================== Section Spacing ================== */
+section {
+  padding: 60px 0;
+  width: 100%;
+  scroll-margin-top: 80px;
+}
+
+#home {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+#about, #projects, #skills, #contact {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+#contact {
+  padding-bottom: 40px;
+}
+
+h1, h2, h3 {
+  color: #fff;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
 }
 
 /* ================== Navbar ================== */
@@ -85,28 +133,28 @@ main {
 /* Make menu take remaining horizontal space */
 .nav-menu {
   display: flex;
-  flex: 1; /* menu fills space between logo and right buttons */
-  justify-content: space-around; /* spreads items evenly across menu */
+  flex: 1;
+  justify-content: space-around;
 }
 
 .nav-list {
   display: flex;
   list-style: none;
-  width: 100%; /* ensure list fills the menu */
+  width: 100%;
   padding: 0;
   margin: 0;
 }
 
 .nav-list li {
-  flex: 1; /* each item gets equal width */
-  text-align: center; /* center the text inside each menu item */
+  flex: 1;
+  text-align: center;
 }
 
 .nav-list a {
   display: block;
   padding: 1rem 0;
   font-weight: 600;
-  color: inherit;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -128,17 +176,20 @@ main {
 .home-left h1 {
   font-size: 4rem;
   line-height: 1.2;
+  color: #fff;
 }
 
 .home-left h2 {
   font-size: 2rem;
   margin: 1rem 0;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .home-left p {
   font-size: 1.3rem;
   max-width: 600px;
   margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .home-buttons {
@@ -188,7 +239,7 @@ main {
 /* ================== About ================== */
 .about-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2.5rem;
   margin-top: 2rem;
 }
@@ -225,7 +276,7 @@ main {
 /* ================== Projects ================== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(380px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 2.5rem;
 }
 
@@ -235,10 +286,12 @@ main {
 
 .project-card h3 {
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .project-card p {
   font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .tech-tag {
@@ -253,6 +306,7 @@ main {
 
 .skill-category h3 {
   font-size: 1.4rem;
+  color: #fff;
 }
 
 .skill-item {
@@ -273,15 +327,30 @@ main {
 
 .contact-info h3 {
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .contact-info p {
   font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input, 
+.contact-form textarea {
   padding: 0.85rem;
   font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #fff;
+  width: 100%;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* ================== Footer ================== */
@@ -290,4 +359,125 @@ main {
   margin: 0 auto;
   text-align: center;
   padding: 2rem 2rem;
+}
+
+.footer {
+  width: 100%;
+  padding: 2rem 5%;
+  text-align: center;
+  background: inherit;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #007bff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.social-link:hover {
+  color: #00ff87;
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(0, 123, 255, 0.2);
+  border-color: #00ff87;
+  box-shadow: 0 5px 15px rgba(0, 255, 135, 0.3);
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* ================== Responsive ================== */
+@media (max-width: 768px) {
+  main {
+    padding: 0 20px;
+  }
+  
+  section {
+    padding: 40px 0;
+    scroll-margin-top: 70px;
+  }
+  
+  #home {
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+  
+  #about, #projects, #skills, #contact {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  #contact {
+    padding-bottom: 30px;
+  }
+  
+  .glass-card {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: calc(100% - 10px);
+  }
+  
+  .footer {
+    padding: 1.5rem 5%;
+    margin-top: 10px;
+  }
+  
+  .footer-social {
+    gap: 1.5rem;
+  }
+  
+  .social-link {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .footer-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* ================== Animations ================== */
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2);
+}
+
+.profile-image, .about-small-image {
+  transition: transform 0.5s ease;
+}
+
+.profile-image:hover, .about-small-image:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }

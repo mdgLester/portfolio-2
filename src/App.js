@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -10,20 +10,33 @@ import ScrollProgress from './components/ScrollProgress';
 import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState('light'); // default light for v2
+  // Smooth scroll for anchor links
+  React.useEffect(() => {
+    const handleAnchorClick = (e) => {
+      const target = e.target.closest('a');
+      if (!target) return;
+      
+      const href = target.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }
+    };
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
+  }, []);
 
   return (
-    <div className={`app ${theme}`}>
+    <div className="app">
       <ScrollProgress />
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <Navbar />
       <main>
         <Home />
         <About />
