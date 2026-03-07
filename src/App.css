@@ -106,23 +106,39 @@ section {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  scroll-margin-top: 80px; /* Accounts for fixed navbar */
+  /* REMOVED scroll-margin-top from here - now set individually */
 }
 
-/* Individual section spacing */
+/* Individual section spacing with specific scroll margins */
 #home {
   padding-top: 120px;
   padding-bottom: 60px;
+  scroll-margin-top: 80px; /* Accounts for fixed navbar */
 }
 
-#about, #projects, #skills, #contact {
+#about {
   padding-top: 60px;
   padding-bottom: 60px;
+  scroll-margin-top: 10px; /* INCREASED for About section */
+}
+
+#projects {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  scroll-margin-top: 80px;
+}
+
+#skills {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  scroll-margin-top: 80px;
 }
 
 /* Contact section - slightly less bottom padding */
 #contact {
+  padding-top: 60px;
   padding-bottom: 40px;
+  scroll-margin-top: 0px;
 }
 
 h1 {
@@ -247,21 +263,37 @@ p {
   
   section {
     padding: 40px 15px;
-    scroll-margin-top: 70px;
+    /* REMOVED scroll-margin-top from here */
   }
   
   #home {
     padding-top: 100px;
     padding-bottom: 40px;
+    scroll-margin-top: 70px;
   }
   
-  #about, #projects, #skills, #contact {
+  #about {
     padding-top: 40px;
     padding-bottom: 40px;
+    scroll-margin-top: 90px; /* Higher on mobile for About */
+  }
+  
+  #projects {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    scroll-margin-top: 70px;
+  }
+  
+  #skills {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    scroll-margin-top: 70px;
   }
   
   #contact {
+    padding-top: 40px;
     padding-bottom: 30px;
+    scroll-margin-top: 70px;
   }
   
   .glass-card {
