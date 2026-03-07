@@ -6,21 +6,57 @@ import '../styles/Contact.css';
 const Contact = () => {
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState({ submitting: false, success: false, error: null });
 
-  // Simulate loading (remove when using real data)
+  // Simulate loading (shows skeleton for 1 second)
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); // Shows skeleton for 1 second
+    }, 1000);
     
     return () => clearTimeout(timer);
   }, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Message sent!");
-    setForm({ name: '', email: '', message: '' });
+    setStatus({ submitting: true, success: false, error: null });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ submitting: false, success: true, error: null });
+        setForm({ name: '', email: '', message: '' });
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          setStatus(prev => ({ ...prev, success: false }));
+        }, 5000);
+      } else {
+        setStatus({ 
+          submitting: false, 
+          success: false, 
+          error: data.message || 'Something went wrong' 
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus({ 
+        submitting: false, 
+        success: false, 
+        error: 'Network error. Please try again.' 
+      });
+    }
   };
 
   // Skeleton loader for contact section
@@ -87,6 +123,19 @@ const Contact = () => {
         
         <RevealOnScroll direction="right">
           <form className="glass-card contact-form" onSubmit={handleSubmit}>
+            {/* Status Messages */}
+            {status.success && (
+              <div className="success-message">
+                ✓ Message sent successfully!
+              </div>
+            )}
+            
+            {status.error && (
+              <div className="error-message">
+                ✗ {status.error}
+              </div>
+            )}
+
             {['name', 'email', 'message'].map((f, i) => (
               f !== 'message' ?
                 <input
@@ -97,6 +146,7 @@ const Contact = () => {
                   value={form[f]}
                   onChange={handleChange}
                   required
+                  disabled={status.submitting}
                 /> :
                 <textarea
                   key={i}
@@ -106,9 +156,16 @@ const Contact = () => {
                   onChange={handleChange}
                   rows={5}
                   required
+                  disabled={status.submitting}
                 />
             ))}
-            <button type="submit">Send Message</button>
+            
+            <button 
+              type="submit" 
+              disabled={status.submitting}
+            >
+              {status.submitting ? 'Sending...' : 'Send Message'}
+            </button>
           </form>
         </RevealOnScroll>
       </div>
