@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
+import SkeletonLoader from './SkeletonLoader';
 import '../styles/Home.css';
 
 const Home = () => {
-  // Array of profile images
+  const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
   const images = [
     '/profile.jpg',
     '/profile1.jpg',
@@ -12,24 +15,48 @@ const Home = () => {
     '/profile3.jpg'
   ];
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Auto-switch images every 3 seconds
+  // Simulate loading
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500); // Simulate 1.5s load time
+    
+    return () => clearTimeout(timer);
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+  useEffect(() => {
+    if (!loading) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [loading, images.length]);
 
   const handleImageClick = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    if (!loading) {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }
   };
+
+  if (loading) {
+    return (
+      <section id="home" className="home">
+        <div className="home-left">
+          <SkeletonLoader.Title />
+          <SkeletonLoader.Text lines={2} />
+          <SkeletonLoader.Button count={3} />
+        </div>
+        <div className="home-right">
+          <SkeletonLoader.Avatar />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="home" className="home">
-      {/* Left content with fade and slide */}
+      {/* Your existing home content */}
       <RevealOnScroll direction="left" delay={0.2} duration={0.8}>
         <div className="home-left">
           <RevealOnScroll direction="up" delay={0.3} threshold={0.1}>
@@ -37,7 +64,7 @@ const Home = () => {
           </RevealOnScroll>
           
           <RevealOnScroll direction="up" delay={0.4} threshold={0.1}>
-            <h2>BSIT College Graduate | Aspiring IT Professional</h2>
+            <h2>College Graduate | Aspiring IT Professional</h2>
           </RevealOnScroll>
           
           <RevealOnScroll direction="up" delay={0.5} threshold={0.1}>
@@ -51,14 +78,13 @@ const Home = () => {
             <div className="home-buttons">
               <a href="#about" className="glass-btn">Know Me More</a>
               <a href="#projects" className="glass-btn">View Work</a>
-              <a href="#skills" className="glass-btn">What Can I Do</a> {/* New button */}
+              <a href="#skills" className="glass-btn">What Can I Do</a>
               <a href="#contact" className="glass-btn">Contact Me</a>
             </div>
           </RevealOnScroll>
         </div>
       </RevealOnScroll>
 
-      {/* Right content with scale effect */}
       <RevealOnScroll direction="right" delay={0.3} duration={0.8}>
         <div className="home-right">
           <div className="profile-container glass-card" onClick={handleImageClick}>

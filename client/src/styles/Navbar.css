@@ -128,3 +128,13 @@
     color: #007bff;
   }
 }
+
+/* Add to your Navbar.css */
+.navbar {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

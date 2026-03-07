@@ -1,4 +1,129 @@
-.skills { padding:100px 5%; }
-.skills-container { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:2rem;}
-.skill-item { padding:0.6rem 1.2rem; border-radius:25px; background: rgba(255,255,255,0.15); color:#007bff; font-weight:600; transition:0.3s;}
-.skill-item:hover { transform:scale(1.05); background: rgba(255,255,255,0.25);}
+.skills { 
+  padding: 100px 5%; 
+}
+
+.skills h2 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.skills-container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 1rem; 
+  justify-content: center; 
+  margin-top: 2rem;
+}
+
+/* Base skill item styling */
+.skill-item { 
+  padding: 0.6rem 1.2rem; 
+  border-radius: 25px; 
+  background: rgba(255, 255, 255, 0.15); 
+  color: #007bff; 
+  font-weight: 600; 
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: default;
+  font-size: 1rem;
+}
+
+.skill-item:hover { 
+  transform: scale(1.05); 
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #007bff;
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Skeleton loader styles - matches skill-item exactly */
+.skeleton-skill {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 75%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: shimmer 1.5s infinite linear !important;
+  color: transparent !important;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  min-width: 80px; /* Ensures consistent sizing */
+}
+
+/* Dark theme adjustment */
+body.dark .skeleton-skill {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  ) !important;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optional: Add a subtle overlay for extra depth */
+.skeleton-skill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+  border-radius: 25px;
+}
+
+/* Ensure skeleton has position relative for the overlay */
+.skeleton-skill {
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills { 
+    padding: 60px 5%; 
+  }
+  
+  .skills h2 {
+    font-size: 2rem;
+  }
+  
+  .skill-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .skeleton-skill {
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-item {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .skills-container {
+    gap: 0.7rem;
+  }
+}
