@@ -10,49 +10,46 @@ const About = () => {
         <h2>About Me</h2>
       </RevealOnScroll>
 
-      <div className="about-container">
+      <div className="about-grid">
 
-        {/* Education - Top */}
-        <RevealOnScroll direction="up">
-          <div className="glass-card about-card about-education">
-            <h3>🎓 Education</h3>
+        {/* Education - Top Left */}
+        <RevealOnScroll direction="right">
+          <div className="glass-card about-card">
+            <h3>Education</h3>
             <p>
-              Bachelor of Science in Information Technology  
-              <br />
+              <strong>Bachelor of Science in Information Technology</strong><br />
               Bulacan State University (2021 - 2026)
             </p>
-
-            <p>
-              STEM Graduate  
-              <br />
-              Sacred Heart Academy of Santa Maria, Bulacan (2019 - 2021)
-            </p>
           </div>
         </RevealOnScroll>
 
-        {/* Experience */}
+        {/* Experience - Top Right */}
         <RevealOnScroll direction="left">
-          <div className="glass-card about-card about-experience">
-            <h3>💼 Experience</h3>
-            <p>- Internship of 500 hours at Bulacan State University.</p>
-            <p>- Developed teamwork, discipline, and leadership.</p>
+          <div className="glass-card about-card">
+            <h3>Experience</h3>
+            <ul className="about-list">
+              <li>500-hour internship at Bulacan State University</li>
+              <li>Developed teamwork, discipline, and leadership</li>
+            </ul>
           </div>
         </RevealOnScroll>
 
-        {/* Hobbies - Middle */}
+        {/* Hobbies - Bottom Left */}
         <RevealOnScroll direction="right">
-          <div className="glass-card about-card about-hobbies">
-            <h3>🎯 Hobbies</h3>
-            <p>🎵 Music</p>
-            <p>🏍 Riding</p>
-            <p>🎬 Watching Movies</p>
+          <div className="glass-card about-card">
+            <h3>Hobbies</h3>
+            <ul className="about-list hobbies-list">
+              <li>Music</li>
+              <li>Riding</li>
+              <li>Watching Movies</li>
+            </ul>
           </div>
         </RevealOnScroll>
 
-        {/* Objective - Bottom */}
-        <RevealOnScroll direction="down">
-          <div className="glass-card about-card about-objective">
-            <h3>🚀 Career Goal</h3>
+        {/* Career Goal - Bottom Right */}
+        <RevealOnScroll direction="left">
+          <div className="glass-card about-card">
+            <h3>Career Goal</h3>
             <p>
               Seeking an entry-level IT position where I can apply my
               technical skills, gain industry experience, and continue
