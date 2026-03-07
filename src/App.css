@@ -43,19 +43,6 @@ body {
   box-sizing: border-box;
 }
 
-.glass-btn {
-  background: rgba(255, 255, 255, 0.25) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #ffffff !important;
-}
-
-.glass-btn:hover {
-  background: rgba(255, 255, 255, 0.35) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
 .glass-tag {
   background: rgba(0, 123, 255, 0.2) !important;
   backdrop-filter: blur(5px) !important;
