@@ -1,8 +1,202 @@
-.contact { padding:100px 5%; }
-.contact-container { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem; }
-.contact-info { padding:2rem; }
-.contact-info p { margin-bottom:1rem; }
-.contact-form { padding:2rem; display:flex; flex-direction:column; gap:1rem;}
-.contact-form input, .contact-form textarea { padding:0.7rem; border-radius:10px; border:none; outline:none;}
-.contact-form button { align-self:flex-start; }
-@media(max-width:768px){ .contact-container{grid-template-columns:1fr;} }
+.contact { 
+  padding: 100px 5%; 
+}
+
+.contact h2 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-container { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 2rem; 
+  margin-top: 2rem; 
+}
+
+/* Contact Info Card - 1ST CARD - COMPLETELY UNTOUCHED */
+.contact-info { 
+  padding: 2rem; 
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: #f5f5f5;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.contact-item:hover {
+  background: #e8f0fe;
+  transform: translateX(5px);
+  border-color: #007bff;
+}
+
+.contact-label {
+  color: #007bff;
+  font-weight: 600;
+  min-width: 80px;
+  margin-right: 1rem;
+}
+
+.contact-value {
+  color: #333333;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Contact Form Card - 2ND CARD - UPDATED WITH WHITE BOXES */
+.contact-form { 
+  padding: 2rem; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* 2ND CARD ONLY - White typable boxes with readable text */
+.contact-form input, 
+.contact-form textarea { 
+  background-color: #ffffff !important; /* Pure white background */
+  color: #1a1a2e !important; /* Deep navy text - maximum contrast */
+  border: 2px solid #d0d0d0 !important; /* Visible gray border */
+  
+  padding: 1rem; 
+  border-radius: 12px; 
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  caret-color: #007bff; /* Blue cursor */
+}
+
+/* 2ND CARD ONLY - Dark readable placeholders */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #636e72 !important; /* Dark gray - actually readable */
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 1;
+}
+
+/* 2ND CARD ONLY - Focus state with brand blue */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #007bff !important;
+  border-width: 2px;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* 2ND CARD ONLY - Submit button with navy and blue border */
+.contact-form button { 
+  align-self: flex-start; 
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #1a1a2e; /* Navy background - matches your dark theme */
+  border: 2px solid #007bff; /* Blue border for accent */
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button hover effect - BLENDS WITH WEBSITE */
+.contact-form button:hover {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); /* Your website gradient */
+  border-color: #007bff; /* Blue border */
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
+  border-width: 2px;
+}
+
+/* Alternative hover option 1 - Solid lighter navy */
+.contact-form button:hover.option1 {
+  background: #16213e;
+  border-color: #007bff;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Alternative hover option 2 - With glow effect */
+.contact-form button:hover.option2 {
+  background: #1a1a2e;
+  border-color: #007bff;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+/* Alternative hover option 3 - Subtle blue tint */
+.contact-form button:hover.option3 {
+  background: #1e1a3a;
+  border-color: #007bff;
+}
+
+/* Button active/click effect */
+.contact-form button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) { 
+  .contact-container {
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+  
+  .contact {
+    padding: 60px 5%;
+  }
+  
+  .contact h2 {
+    font-size: 2rem;
+  }
+  
+  /* 1ST CARD - mobile adjustments (minimal) */
+  .contact-item {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .contact-label {
+    min-width: 70px;
+    font-size: 0.9rem;
+  }
+  
+  .contact-value {
+    font-size: 0.9rem;
+  }
+  
+  /* 2ND CARD - mobile adjustments */
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.8rem;
+    border-width: 2px;
+    font-size: 0.95rem;
+  }
+  
+  .contact-form button {
+    align-self: center;
+    width: 100%;
+  }
+  
+  /* Keep hover effect on mobile */
+  .contact-form button:hover {
+    transform: translateY(-2px);
+  }
+}
