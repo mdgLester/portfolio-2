@@ -28,8 +28,8 @@ const About = () => {
           <div className="glass-card about-card">
             <h3>Experience</h3>
             <ul className="about-list">
-              <li>500-hour internship at Bulacan State University</li>
-              <li>Developed teamwork, discipline, and leadership</li>
+              <li>500-hour internship at Bulacan State University.</li>
+              <li>Developed teamwork, discipline, and leadership skills.</li>
             </ul>
           </div>
         </RevealOnScroll>
