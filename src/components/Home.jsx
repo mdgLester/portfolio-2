@@ -37,7 +37,7 @@ const Home = () => {
           </RevealOnScroll>
           
           <RevealOnScroll direction="up" delay={0.4} threshold={0.1}>
-            <h2>College Graduate | Aspiring IT Professional</h2>
+            <h2>BSIT College Graduate | Aspiring IT Professional</h2>
           </RevealOnScroll>
           
           <RevealOnScroll direction="up" delay={0.5} threshold={0.1}>
