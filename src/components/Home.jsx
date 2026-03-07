@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Home.css';
 
@@ -8,14 +8,22 @@ const Home = () => {
     '/profile.jpg',
     '/profile1.jpg',
     '/profile2.jpg',
-    '/profile3.jpg',
-    '/profile4.jpg'
+    '/profile3.jpg'
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Auto-switch images every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [images.length]);
+
   const handleImageClick = () => {
-    // Cycle to the next image
+    // Manual cycle to next image when clicked
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
@@ -28,7 +36,7 @@ const Home = () => {
         transition={{ duration: 0.8 }}
       >
         <h1>Hi, I'm <span className="highlight">John Lester</span></h1>
-        <h2>STEM Graduate | College Graduate | Aspiring IT Professional | Musician</h2>
+        <h2>College Graduate | Aspiring IT Professional</h2>
         <p>
           Passionate about technology and eager to contribute to innovative projects 
           with a strong educational foundation.
@@ -56,7 +64,7 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.2 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
               style={{ cursor: 'pointer' }}
             />
           </AnimatePresence>
