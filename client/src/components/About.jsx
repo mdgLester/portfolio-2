@@ -1,8 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import RevealOnScroll from './RevealOnScroll';
+import SkeletonLoader from './SkeletonLoader';
 import '../styles/About.css';
 
 const About = () => {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading (remove when using real data)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Shows skeleton for 1 second
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Skeleton loader for about section
+  if (loading) {
+    return (
+      <section id="about" className="about">
+        {/* Title skeleton for "About Me" */}
+        <SkeletonLoader.Title level="h2" />
+
+        <div className="about-grid">
+          {/* Education - Top Left Skeleton */}
+          <RevealOnScroll direction="right">
+            <div className="glass-card about-card skeleton-about-card">
+              <div className="skeleton-about-title" />
+              <div className="skeleton-about-text" />
+              <div className="skeleton-about-text" style={{ width: '70%' }} />
+            </div>
+          </RevealOnScroll>
+
+          {/* Experience - Top Right Skeleton */}
+          <RevealOnScroll direction="left">
+            <div className="glass-card about-card skeleton-about-card">
+              <div className="skeleton-about-title" />
+              <div className="skeleton-about-text" />
+              <div className="skeleton-about-text" />
+            </div>
+          </RevealOnScroll>
+
+          {/* Hobbies - Bottom Left Skeleton */}
+          <RevealOnScroll direction="right">
+            <div className="glass-card about-card skeleton-about-card">
+              <div className="skeleton-about-title" />
+              <div className="skeleton-about-text" style={{ width: '40%' }} />
+              <div className="skeleton-about-text" style={{ width: '30%' }} />
+              <div className="skeleton-about-text" style={{ width: '50%' }} />
+            </div>
+          </RevealOnScroll>
+
+          {/* Career Goal - Bottom Right Skeleton */}
+          <RevealOnScroll direction="left">
+            <div className="glass-card about-card skeleton-about-card">
+              <div className="skeleton-about-title" />
+              <div className="skeleton-about-text" />
+              <div className="skeleton-about-text" />
+              <div className="skeleton-about-text" style={{ width: '80%' }} />
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="about" className="about">
       
