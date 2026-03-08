@@ -1,5 +1,7 @@
 .about {
   padding: 100px 5%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .about h2 {
@@ -17,6 +19,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Glass card styling */
@@ -45,6 +48,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .about-card h3 {
@@ -62,6 +67,9 @@
   font-weight: 400;
   font-size: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  word-wrap: break-word;
+  max-width: 100%;
+  padding: 0 0.5rem;
 }
 
 .about-card p:last-child {
@@ -73,7 +81,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center; /* Center the text */
+  text-align: center;
   width: 100%;
 }
 
@@ -83,7 +91,8 @@
   margin-bottom: 0.5rem;
   font-size: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  /* Remove bullet styling */
+  word-wrap: break-word;
+  padding: 0 0.5rem;
 }
 
 /* Hobbies list - also no dots, center aligned */
@@ -103,10 +112,31 @@
   display: none;
 }
 
-/* Responsive for mobile - STILL 2 COLUMNS */
+/* Tablet and medium screens */
+@media (max-width: 1024px) {
+  .about {
+    padding: 80px 4%;
+  }
+  
+  .about-card {
+    min-height: 220px;
+  }
+  
+  .about-card h3 {
+    font-size: 1.4rem;
+  }
+  
+  .about-card p,
+  .about-list li {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile - STILL 2 COLUMNS but optimized */
 @media (max-width: 768px) {
   .about {
-    padding: 60px 5%;
+    padding: 60px 3%;
+    width: 100%;
   }
   
   .about h2 {
@@ -116,44 +146,145 @@
   
   .about-grid {
     grid-template-columns: repeat(2, 1fr); /* Still 2 columns on mobile */
-    gap: 1rem;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0 5px;
   }
   
   .about-card {
     min-height: auto;
-    padding: 1.5rem;
-  }
-  
-  .about-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .about-card p,
-  .about-list li {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-}
-
-/* For very small phones, still keep 2 columns but adjust further */
-@media (max-width: 480px) {
-  .about-grid {
-    gap: 0.8rem;
-  }
-  
-  .about-card {
-    padding: 1rem;
+    padding: 1.2rem 0.8rem;
+    width: 100%;
   }
   
   .about-card h3 {
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
+    word-wrap: break-word;
   }
   
   .about-card p,
   .about-list li {
     font-size: 0.8rem;
     line-height: 1.4;
+    word-wrap: break-word;
+    padding: 0 0.2rem;
   }
+  
+  .about-list li {
+    margin-bottom: 0.3rem;
+  }
+  
+  .glass-card {
+    padding: 1rem 0.8rem;
+  }
+}
+
+/* For very small phones */
+@media (max-width: 480px) {
+  .about {
+    padding: 40px 2%;
+  }
+  
+  .about h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-grid {
+    gap: 0.6rem;
+    padding: 0 3px;
+  }
+  
+  .about-card {
+    padding: 1rem 0.5rem;
+  }
+  
+  .about-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .about-card p,
+  .about-list li {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+  
+  .glass-card {
+    padding: 0.8rem 0.5rem;
+    border-radius: 15px;
+  }
+}
+
+/* For extremely small devices (under 360px) */
+@media (max-width: 360px) {
+  .about-grid {
+    grid-template-columns: 1fr; /* Switch to 1 column on tiny screens */
+    gap: 0.8rem;
+  }
+  
+  .about-card {
+    padding: 1.2rem;
+  }
+  
+  .about-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .about-card p,
+  .about-list li {
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .about {
+    padding: 40px 5%;
+  }
+  
+  .about-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns in landscape */
+    gap: 0.8rem;
+  }
+  
+  .about-card {
+    min-height: 180px;
+  }
+}
+
+/* For very large screens */
+@media (min-width: 1400px) {
+  .about-grid {
+    max-width: 1400px;
+    gap: 2.5rem;
+  }
+  
+  .about-card {
+    min-height: 280px;
+  }
+  
+  .about-card h3 {
+    font-size: 1.6rem;
+  }
+  
+  .about-card p,
+  .about-list li {
+    font-size: 1.1rem;
+  }
+}
+
+/* Fix for potential overflow */
+.about, 
+.about-grid, 
+.about-card {
+  box-sizing: border-box;
+}
+
+/* Ensure text doesn't overflow on very narrow screens */
+.about-card p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
