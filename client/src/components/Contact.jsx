@@ -24,7 +24,8 @@ const Contact = () => {
     setStatus({ submitting: true, success: false, error: null });
 
     try {
-      const response = await fetch('/api/contact', {
+      // UPDATED: Using your live Render backend URL
+      const response = await fetch('https://jlmdg.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
