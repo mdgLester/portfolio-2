@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import RevealOnScroll from './RevealOnScroll';
 import SkeletonLoader from './SkeletonLoader';
 import '../styles/Contact.css';
+
+// Initialize EmailJS with your Public Key
+emailjs.init('92eRYMXKGQW9eJw7m'); // ← Replace with your Public Key from Account → API Keys
 
 const Contact = () => {
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ submitting: false, success: false, error: null });
 
-  // Simulate loading (shows skeleton for 1 second)
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
-    
     return () => clearTimeout(timer);
   }, []);
 
@@ -24,51 +26,42 @@ const Contact = () => {
     setStatus({ submitting: true, success: false, error: null });
 
     try {
-      // UPDATED: Using your live Render backend URL
-      const response = await fetch('https://jlmdg.onrender.com/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      });
+      const templateParams = {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      };
 
-      const data = await response.json();
+      const response = await emailjs.send(
+        'portfolio_email', // ← Replace with your Service ID (from Email Services tab)
+        'template_tv59s2x', // ← Replace with your Template ID (from Email Templates tab)
+        templateParams
+      );
 
-      if (response.ok) {
+      if (response.status === 200) {
         setStatus({ submitting: false, success: true, error: null });
         setForm({ name: '', email: '', message: '' });
         
-        // Auto-hide success message after 5 seconds
         setTimeout(() => {
           setStatus(prev => ({ ...prev, success: false }));
         }, 5000);
-      } else {
-        setStatus({ 
-          submitting: false, 
-          success: false, 
-          error: data.message || 'Something went wrong' 
-        });
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('EmailJS Error:', error);
       setStatus({ 
         submitting: false, 
         success: false, 
-        error: 'Network error. Please try again.' 
+        error: 'Failed to send message. Please try again.' 
       });
     }
   };
 
-  // Skeleton loader for contact section
+  // Skeleton loader
   if (loading) {
     return (
       <section id="contact" className="contact">
-        {/* Title skeleton for "Contact Me" */}
         <SkeletonLoader.Title level="h2" />
-        
         <div className="contact-container">
-          {/* Left card skeleton */}
           <RevealOnScroll direction="left">
             <div className="glass-card contact-info skeleton-contact-info">
               {[...Array(4)].map((_, i) => (
@@ -79,8 +72,6 @@ const Contact = () => {
               ))}
             </div>
           </RevealOnScroll>
-          
-          {/* Right card skeleton */}
           <RevealOnScroll direction="right">
             <div className="glass-card contact-form skeleton-contact-form">
               {[...Array(3)].map((_, i) => (
@@ -124,42 +115,43 @@ const Contact = () => {
         
         <RevealOnScroll direction="right">
           <form className="glass-card contact-form" onSubmit={handleSubmit}>
-            {/* Status Messages */}
             {status.success && (
-              <div className="success-message">
-                ✓ Message sent successfully!
-              </div>
+              <div className="success-message">✓ Message sent successfully!</div>
             )}
             
             {status.error && (
-              <div className="error-message">
-                ✗ {status.error}
-              </div>
+              <div className="error-message">✗ {status.error}</div>
             )}
 
-            {['name', 'email', 'message'].map((f, i) => (
-              f !== 'message' ?
-                <input
-                  key={i}
-                  type={f === 'email' ? 'email' : 'text'}
-                  name={f}
-                  placeholder={`Your ${f}`}
-                  value={form[f]}
-                  onChange={handleChange}
-                  required
-                  disabled={status.submitting}
-                /> :
-                <textarea
-                  key={i}
-                  name={f}
-                  placeholder={`Your ${f}`}
-                  value={form[f]}
-                  onChange={handleChange}
-                  rows={5}
-                  required
-                  disabled={status.submitting}
-                />
-            ))}
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              disabled={status.submitting}
+            />
+            
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              disabled={status.submitting}
+            />
+            
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={form.message}
+              onChange={handleChange}
+              rows={5}
+              required
+              disabled={status.submitting}
+            />
             
             <button 
               type="submit" 
