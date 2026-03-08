@@ -87,7 +87,7 @@ const Home = () => {
 
       <RevealOnScroll direction="right" delay={0.3} duration={0.8}>
         <div className="home-right">
-          <div className="profile-container glass-card" onClick={handleImageClick}>
+          <div className="profile-container" onClick={handleImageClick}>
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentImageIndex}

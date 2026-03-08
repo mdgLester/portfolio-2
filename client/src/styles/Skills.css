@@ -1,5 +1,7 @@
 .skills { 
   padding: 100px 5%; 
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .skills h2 {
@@ -15,6 +17,9 @@
   gap: 1rem; 
   justify-content: center; 
   margin-top: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 5px;
 }
 
 /* Base skill item styling */
@@ -28,6 +33,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: default;
   font-size: 1rem;
+  white-space: nowrap;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
 .skill-item:hover { 
@@ -97,33 +105,191 @@ body.dark .skeleton-skill {
   position: relative;
 }
 
-/* Responsive adjustments */
+/* Tablet and medium screens */
+@media (max-width: 1024px) {
+  .skills { 
+    padding: 80px 4%; 
+  }
+  
+  .skills h2 {
+    font-size: 2.3rem;
+  }
+  
+  .skill-item {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .skills { 
-    padding: 60px 5%; 
+    padding: 60px 3%; 
   }
   
   .skills h2 {
     font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .skills-container {
+    gap: 0.8rem;
+    padding: 0 8px;
   }
   
   .skill-item {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
   }
   
   .skeleton-skill {
     min-width: 70px;
+    height: 32px;
   }
 }
 
-@media (max-width: 480px) {
-  .skill-item {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+/* Small mobile */
+@media (max-width: 600px) {
+  .skills { 
+    padding: 50px 2%; 
   }
   
   .skills-container {
     gap: 0.7rem;
+    padding: 0 5px;
+    justify-content: center;
+  }
+  
+  .skill-item {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .skills h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .skills { 
+    padding: 40px 2%; 
+  }
+  
+  .skills h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .skills-container {
+    gap: 0.6rem;
+    padding: 0 3px;
+  }
+  
+  .skill-item {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+    border-radius: 20px;
+  }
+  
+  .skeleton-skill {
+    min-width: 60px;
+    height: 28px;
+  }
+}
+
+/* Extra small devices (under 360px) */
+@media (max-width: 360px) {
+  .skills { 
+    padding: 30px 1%; 
+  }
+  
+  .skills h2 {
+    font-size: 1.4rem;
+  }
+  
+  .skills-container {
+    gap: 0.5rem;
+  }
+  
+  .skill-item {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    border-radius: 15px;
+  }
+  
+  .skeleton-skill {
+    min-width: 50px;
+    height: 25px;
+  }
+}
+
+/* For very large screens */
+@media (min-width: 1400px) {
+  .skills { 
+    padding: 120px 5%; 
+  }
+  
+  .skills h2 {
+    font-size: 3rem;
+  }
+  
+  .skills-container {
+    gap: 1.2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .skill-item {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .skills { 
+    padding: 40px 3%; 
+  }
+  
+  .skills-container {
+    gap: 0.6rem;
+  }
+  
+  .skill-item {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Fix for overflow issues */
+.skills-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.skill-item {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Ensure skeleton items don't cause layout shift */
+.skeleton-skill {
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* High-resolution screens */
+@media (min-width: 2000px) {
+  .skills { 
+    padding: 150px 5%; 
+  }
+  
+  .skill-item {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 30px;
   }
 }

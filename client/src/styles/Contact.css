@@ -1,11 +1,14 @@
 .contact { 
   padding: 100px 5%; 
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .contact h2 {
   color: #ffffff;
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .contact-container { 
@@ -13,14 +16,21 @@
   grid-template-columns: 1fr 1fr; 
   gap: 2rem; 
   margin-top: 2rem; 
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
-/* Contact Info Card - 1ST CARD - COMPLETELY UNTOUCHED */
+/* Contact Info Card - 1ST CARD */
 .contact-info { 
   padding: 2rem; 
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .contact-item {
@@ -32,6 +42,8 @@
   background: #f5f5f5;
   transition: all 0.3s ease;
   border: 1px solid #e0e0e0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-item:hover {
@@ -51,9 +63,10 @@
   color: #333333;
   font-size: 1rem;
   font-weight: 500;
+  word-break: break-word;
 }
 
-/* Contact Form Card - 2ND CARD - UPDATED WITH WHITE BOXES */
+/* Contact Form Card - 2ND CARD */
 .contact-form { 
   padding: 2rem; 
   display: flex; 
@@ -62,15 +75,16 @@
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  box-sizing: border-box;
 }
 
-/* 2ND CARD ONLY - White typable boxes with readable text */
+/* Form inputs */
 .contact-form input, 
 .contact-form textarea { 
-  background-color: #ffffff !important; /* Pure white background */
-  color: #1a1a2e !important; /* Deep navy text - maximum contrast */
-  border: 2px solid #d0d0d0 !important; /* Visible gray border */
-  
+  background-color: #ffffff !important;
+  color: #1a1a2e !important;
+  border: 2px solid #d0d0d0 !important;
   padding: 1rem; 
   border-radius: 12px; 
   outline: none;
@@ -80,19 +94,17 @@
   transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
-  caret-color: #007bff; /* Blue cursor */
+  caret-color: #007bff;
 }
 
-/* 2ND CARD ONLY - Dark readable placeholders */
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #636e72 !important; /* Dark gray - actually readable */
+  color: #636e72 !important;
   font-size: 0.95rem;
   font-weight: 400;
   opacity: 1;
 }
 
-/* 2ND CARD ONLY - Focus state with brand blue */
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: #007bff !important;
@@ -103,104 +115,40 @@
   outline: none;
 }
 
-/* 2ND CARD ONLY - Submit button with navy and blue border */
+/* Submit button */
 .contact-form button { 
   align-self: flex-start; 
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
-  background: #1a1a2e; /* Navy background - matches your dark theme */
-  border: 2px solid #007bff; /* Blue border for accent */
+  background: #1a1a2e;
+  border: 2px solid #007bff;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: fit-content;
 }
 
-/* Button hover effect - BLENDS WITH WEBSITE */
-.contact-form button:hover {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); /* Your website gradient */
-  border-color: #007bff; /* Blue border */
+.contact-form button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-color: #007bff;
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
-  border-width: 2px;
 }
 
-/* Alternative hover option 1 - Solid lighter navy */
-.contact-form button:hover.option1 {
-  background: #16213e;
-  border-color: #007bff;
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-}
-
-/* Alternative hover option 2 - With glow effect */
-.contact-form button:hover.option2 {
-  background: #1a1a2e;
-  border-color: #007bff;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
-}
-
-/* Alternative hover option 3 - Subtle blue tint */
-.contact-form button:hover.option3 {
-  background: #1e1a3a;
-  border-color: #007bff;
-}
-
-/* Button active/click effect */
 .contact-form button:active {
   transform: translateY(-1px);
   box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
 }
 
-/* Responsive for mobile */
-@media (max-width: 768px) { 
-  .contact-container {
-    grid-template-columns: 1fr; 
-    gap: 1.5rem;
-  }
-  
-  .contact {
-    padding: 60px 5%;
-  }
-  
-  .contact h2 {
-    font-size: 2rem;
-  }
-  
-  /* 1ST CARD - mobile adjustments (minimal) */
-  .contact-item {
-    padding: 0.6rem 0.8rem;
-  }
-  
-  .contact-label {
-    min-width: 70px;
-    font-size: 0.9rem;
-  }
-  
-  .contact-value {
-    font-size: 0.9rem;
-  }
-  
-  /* 2ND CARD - mobile adjustments */
-  .contact-form input,
-  .contact-form textarea {
-    padding: 0.8rem;
-    border-width: 2px;
-    font-size: 0.95rem;
-  }
-  
-  .contact-form button {
-    align-self: center;
-    width: 100%;
-  }
-  
-  /* Keep hover effect on mobile */
-  .contact-form button:hover {
-    transform: translateY(-2px);
-  }
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
+/* Success/Error messages */
 .success-message {
   background: rgba(0, 255, 0, 0.1);
   border: 1px solid #00ff87;
@@ -209,6 +157,7 @@
   border-radius: 10px;
   margin-bottom: 1rem;
   text-align: center;
+  animation: slideIn 0.3s ease;
 }
 
 .error-message {
@@ -219,9 +168,321 @@
   border-radius: 10px;
   margin-bottom: 1rem;
   text-align: center;
+  animation: slideIn 0.3s ease;
 }
 
-.contact-form button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet and medium screens */
+@media (max-width: 1024px) {
+  .contact { 
+    padding: 80px 4%; 
+  }
+  
+  .contact h2 {
+    font-size: 2.3rem;
+  }
+  
+  .contact-container {
+    gap: 1.5rem;
+  }
+  
+  .contact-info, 
+  .contact-form {
+    padding: 1.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) { 
+  .contact {
+    padding: 60px 3%;
+  }
+  
+  .contact h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+    max-width: 500px;
+  }
+  
+  /* Contact Info Card - mobile */
+  .contact-info {
+    padding: 1.5rem;
+    width: 100%;
+  }
+  
+  .contact-item {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .contact-label {
+    min-width: 70px;
+    font-size: 0.9rem;
+  }
+  
+  .contact-value {
+    font-size: 0.9rem;
+    flex: 1;
+    word-break: break-word;
+  }
+  
+  /* Contact Form Card - mobile */
+  .contact-form {
+    padding: 1.5rem;
+    width: 100%;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.9rem;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    border-width: 2px;
+  }
+  
+  .contact-form button {
+    align-self: center;
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+  }
+  
+  .contact-form button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .success-message,
+  .error-message {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 600px) {
+  .contact {
+    padding: 50px 2%;
+  }
+  
+  .contact h2 {
+    font-size: 1.8rem;
+  }
+  
+  .contact-container {
+    gap: 1.2rem;
+  }
+  
+  .contact-info,
+  .contact-form {
+    padding: 1.2rem;
+  }
+  
+  .contact-item {
+    padding: 0.7rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .contact-label {
+    min-width: auto;
+    margin-right: 0;
+    font-size: 0.85rem;
+  }
+  
+  .contact-value {
+    font-size: 0.9rem;
+    padding-left: 0;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.8rem;
+    font-size: 16px !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .contact {
+    padding: 40px 2%;
+  }
+  
+  .contact h2 {
+    font-size: 1.6rem;
+  }
+  
+  .contact-container {
+    gap: 1rem;
+  }
+  
+  .contact-info,
+  .contact-form {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+  
+  .contact-item {
+    padding: 0.6rem;
+  }
+  
+  .contact-label {
+    font-size: 0.8rem;
+  }
+  
+  .contact-value {
+    font-size: 0.85rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.7rem;
+    font-size: 16px !important;
+    border-radius: 10px;
+  }
+  
+  .contact-form button {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .success-message,
+  .error-message {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small devices (under 360px) */
+@media (max-width: 360px) {
+  .contact {
+    padding: 30px 1%;
+  }
+  
+  .contact h2 {
+    font-size: 1.4rem;
+  }
+  
+  .contact-item {
+    padding: 0.5rem;
+  }
+  
+  .contact-label {
+    font-size: 0.75rem;
+  }
+  
+  .contact-value {
+    font-size: 0.8rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.6rem;
+  }
+  
+  .contact-form button {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* For very large screens */
+@media (min-width: 1400px) {
+  .contact { 
+    padding: 120px 5%; 
+  }
+  
+  .contact h2 {
+    font-size: 3rem;
+  }
+  
+  .contact-container {
+    max-width: 1400px;
+    gap: 3rem;
+  }
+  
+  .contact-info,
+  .contact-form {
+    padding: 2.5rem;
+  }
+  
+  .contact-label {
+    font-size: 1.1rem;
+    min-width: 100px;
+  }
+  
+  .contact-value {
+    font-size: 1.1rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
+  
+  .contact-form button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .contact {
+    padding: 40px 3%;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .contact-item {
+    padding: 0.5rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.5rem;
+  }
+  
+  .contact-form button {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Fix for input zoom on iOS */
+@media screen and (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* Ensure cards have consistent height */
+.contact-info,
+.contact-form {
+  height: fit-content;
+}
+
+/* Fix for overflow */
+.contact,
+.contact-container,
+.contact-info,
+.contact-form {
+  box-sizing: border-box;
 }
